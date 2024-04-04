@@ -8,7 +8,7 @@ export default function ScoreFilter({ attr }: { attr: string }) {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  const scoreSelected = searchParams.get(attr) || -1;
+  const scoreSelected = searchParams.get(attr) || "-1";
 
   function handleChange(e: ChangeEvent<HTMLSelectElement>) {
     const value = e.target.value;

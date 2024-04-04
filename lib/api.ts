@@ -65,3 +65,27 @@ export async function getWeapons() {
   const json = await res.json();
   return json;
 }
+
+export async function createContactMessage(data: {
+  Name: string;
+  Email: string;
+  Message: string;
+}) {
+  try {
+    const res = await fetch(API_URL + "/contact-messages", {
+      headers: HEADERS,
+      method: "POST",
+      body: JSON.stringify({ data: data }),
+    });
+    if (!res.ok) {
+      const json = await res.json();
+      console.error(json);
+      throw new Error("Failed to create contact message: " + json);
+    }
+    const json = await res.json();
+    return json;
+  } catch (error) {
+    console.error("Error: ", error);
+    throw error;
+  }
+}
