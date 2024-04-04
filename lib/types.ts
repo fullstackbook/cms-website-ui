@@ -6,6 +6,7 @@ export interface FlyingMachineSearchParams {
   Capacity: number;
   page: number;
   pageSize: number;
+  weapons: string;
 }
 
 export interface Machine {
@@ -18,5 +19,15 @@ export interface Machine {
     Agility: number;
     Capacity: number;
     Image: any;
+    weapons: {
+      data: Weapon[];
+    };
+  };
+}
+
+export interface Weapon {
+  id: number;
+  attributes: {
+    Name: string;
   };
 }

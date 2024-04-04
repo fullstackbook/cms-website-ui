@@ -18,7 +18,9 @@ export async function getHeroText() {
 export async function getFlyingMachines(
   searchParams: FlyingMachineSearchParams
 ) {
-  let url = new URL(API_URL + "/flying-machines?populate=Image");
+  let url = new URL(
+    API_URL + "/flying-machines?populate=Image&populate[0]=weapons"
+  );
 
   for (let key in searchParams) {
     if (key === "page") {
@@ -35,6 +37,16 @@ export async function getFlyingMachines(
         `filters[${key}][$gte]`,
         searchParams[key as keyof FlyingMachineSearchParams].toString()
       );
+    } else if (key === "weapons") {
+      const str = searchParams["weapons"];
+      if (!str) {
+        continue;
+      }
+      const arr = str.split(",");
+      for (let i = 0; i < arr.length; i++) {
+        let id = arr[i];
+        url.searchParams.set(`filters[weapons][id][$in][${i}]`, id);
+      }
     }
   }
 
@@ -42,6 +54,14 @@ export async function getFlyingMachines(
     headers: HEADERS,
   });
 
+  const json = await res.json();
+  return json;
+}
+
+export async function getWeapons() {
+  const res = await fetch(API_URL + "/weapons", {
+    headers: HEADERS,
+  });
   const json = await res.json();
   return json;
 }

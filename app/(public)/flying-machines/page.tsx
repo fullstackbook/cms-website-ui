@@ -1,7 +1,8 @@
 import Pagination from "@/components/pagination";
 import ScoreFilter from "@/components/score-filter";
-import { getFlyingMachines } from "@/lib/api";
-import { FlyingMachineSearchParams, Machine } from "@/lib/types";
+import WeaponFilter from "@/components/weapon-filter";
+import { getFlyingMachines, getWeapons } from "@/lib/api";
+import { FlyingMachineSearchParams, Machine, Weapon } from "@/lib/types";
 import Image from "next/image";
 
 export default async function Page({
@@ -10,6 +11,7 @@ export default async function Page({
   searchParams: FlyingMachineSearchParams;
 }) {
   const flyingMachines = await getFlyingMachines(searchParams);
+  const weapons = await getWeapons();
 
   console.log(flyingMachines.data);
 
@@ -22,6 +24,7 @@ export default async function Page({
         <ScoreFilter attr="Speed" />
         <ScoreFilter attr="Agility" />
         <ScoreFilter attr="Capacity" />
+        <WeaponFilter weapons={weapons.data} />
       </div>
       <div className="col-span-9">
         <div className=" p-5 grid grid-cols-3 gap-5">
@@ -44,6 +47,13 @@ export default async function Page({
                 <div>⚔️ {machine.attributes.Attack}</div>
                 <div>🛡️ {machine.attributes.Defense}</div>
                 <div>🚀 {machine.attributes.Speed}</div>
+              </div>
+              <div className="flex gap-5">
+                {machine.attributes.weapons.data.map((weapon: Weapon) => (
+                  <div className="bg-green-200 rounded-lg p-1 text-sm font-bold">
+                    {weapon.attributes.Name}
+                  </div>
+                ))}
               </div>
             </div>
           ))}
