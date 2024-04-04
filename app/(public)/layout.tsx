@@ -6,7 +6,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div>
       <Header />
-      <div>{children}</div>
+      <main className="max-w-screen-lg m-auto">{children}</main>
       <Footer />
     </div>
   );
