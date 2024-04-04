@@ -1,6 +1,6 @@
 import Pagination from "@/components/pagination";
 import { getFlyingMachines } from "@/lib/api";
-import { FlyingMachineSearchParams } from "@/lib/types";
+import { FlyingMachineSearchParams, Machine } from "@/lib/types";
 import Image from "next/image";
 
 export default async function Page({
@@ -17,7 +17,7 @@ export default async function Page({
       <div className="col-span-3 bg-gray-100 p-5">sidebar</div>
       <div className="col-span-9">
         <div className=" p-5 grid grid-cols-3 gap-5">
-          {flyingMachines.data.map((machine) => (
+          {flyingMachines.data.map((machine: Machine) => (
             <div
               key={machine.id}
               className="bg-zinc-100 flex flex-col gap-5 items-center py-5"
