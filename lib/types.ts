@@ -1,4 +1,9 @@
 export interface FlyingMachineSearchParams {
+  Attack: number;
+  Defense: number;
+  Agility: number;
+  Speed: number;
+  Capacity: number;
   page: number;
   pageSize: number;
 }

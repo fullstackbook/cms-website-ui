@@ -28,6 +28,13 @@ export async function getFlyingMachines(
         "pagination[pageSize]",
         searchParams["pageSize"].toString()
       );
+    } else if (
+      ["Attack", "Defense", "Agility", "Speed", "Capacity"].indexOf(key) !== -1
+    ) {
+      url.searchParams.set(
+        `filters[${key}][$gte]`,
+        searchParams[key as keyof FlyingMachineSearchParams].toString()
+      );
     }
   }
 

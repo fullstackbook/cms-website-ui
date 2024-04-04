@@ -1,4 +1,5 @@
 import Pagination from "@/components/pagination";
+import ScoreFilter from "@/components/score-filter";
 import { getFlyingMachines } from "@/lib/api";
 import { FlyingMachineSearchParams, Machine } from "@/lib/types";
 import Image from "next/image";
@@ -14,7 +15,14 @@ export default async function Page({
 
   return (
     <div className="grid grid-cols-12 ">
-      <div className="col-span-3 bg-gray-100 p-5">sidebar</div>
+      <div className="col-span-3 bg-gray-100 p-5 flex flex-col gap-5">
+        <h2 className="font-bold">Attributes</h2>
+        <ScoreFilter attr="Attack" />
+        <ScoreFilter attr="Defense" />
+        <ScoreFilter attr="Speed" />
+        <ScoreFilter attr="Agility" />
+        <ScoreFilter attr="Capacity" />
+      </div>
       <div className="col-span-9">
         <div className=" p-5 grid grid-cols-3 gap-5">
           {flyingMachines.data.map((machine: Machine) => (
