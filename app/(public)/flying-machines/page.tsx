@@ -42,7 +42,7 @@ export default async function Page({
               <Link href={`/flying-machines/${machine.id}`}>
                 <Image
                   src={
-                    process.env.STRAPI_BASE_URL +
+                    process.env.IMAGE_URL +
                     machine.attributes.Image.data.attributes.formats.thumbnail
                       .url
                   }

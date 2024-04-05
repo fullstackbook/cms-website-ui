@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className="grid grid-cols-3 gap-5">
         <Image
           src={
-            process.env.STRAPI_BASE_URL +
+            process.env.IMAGE_URL +
             machine.data.attributes.Image.data.attributes.formats.small.url
           }
           width={500}
