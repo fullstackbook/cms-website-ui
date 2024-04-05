@@ -1,5 +1,6 @@
 import Pagination from "@/components/pagination";
 import ScoreFilter from "@/components/score-filter";
+import SortByAttribute from "@/components/sort-by-attribute";
 import WeaponFilter from "@/components/weapon-filter";
 import { getFlyingMachines, getWeapons } from "@/lib/api";
 import { FlyingMachineSearchParams, Machine, Weapon } from "@/lib/types";
@@ -25,6 +26,7 @@ export default async function Page({
         <ScoreFilter attr="Agility" />
         <ScoreFilter attr="Capacity" />
         <WeaponFilter weapons={weapons.data} />
+        <SortByAttribute />
       </div>
       <div className="col-span-9">
         <div className=" p-5 grid grid-cols-3 gap-5">

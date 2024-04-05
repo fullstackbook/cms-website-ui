@@ -7,6 +7,7 @@ export interface FlyingMachineSearchParams {
   page: number;
   pageSize: number;
   weapons: string;
+  sort: string;
 }
 
 export interface Machine {

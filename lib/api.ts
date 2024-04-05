@@ -47,6 +47,8 @@ export async function getFlyingMachines(
         let id = arr[i];
         url.searchParams.set(`filters[weapons][id][$in][${i}]`, id);
       }
+    } else if (key === "sort") {
+      url.searchParams.set("sort[0]", searchParams["sort"]);
     }
   }
 
