@@ -30,7 +30,9 @@ export default function ContactForm() {
         {state.errors?.Name && (
           <div>
             {state.errors.Name.map((err) => (
-              <p className="text-red-600">{err}</p>
+              <p key={err} className="text-red-600">
+                {err}
+              </p>
             ))}
           </div>
         )}
@@ -45,7 +47,9 @@ export default function ContactForm() {
         {state.errors?.Email && (
           <div>
             {state.errors.Email.map((err) => (
-              <p className="text-red-600">{err}</p>
+              <p key={err} className="text-red-600">
+                {err}
+              </p>
             ))}
           </div>
         )}
@@ -59,7 +63,9 @@ export default function ContactForm() {
         {state.errors?.Message && (
           <div>
             {state.errors.Message.map((err) => (
-              <p className="text-red-600">{err}</p>
+              <p key={err} className="text-red-600">
+                {err}
+              </p>
             ))}
           </div>
         )}

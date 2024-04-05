@@ -6,6 +6,7 @@ import { getFlyingMachines, getWeapons } from "@/lib/api";
 import { FlyingMachineSearchParams, Machine, Weapon } from "@/lib/types";
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export default async function Page({
   searchParams,
@@ -21,13 +22,15 @@ export default async function Page({
     <div className="grid grid-cols-12 ">
       <div className="col-span-3 bg-gray-100 p-5 flex flex-col gap-5">
         <h2 className="font-bold">Attributes</h2>
-        <ScoreFilter attr="Attack" />
-        <ScoreFilter attr="Defense" />
-        <ScoreFilter attr="Speed" />
-        <ScoreFilter attr="Agility" />
-        <ScoreFilter attr="Capacity" />
-        <WeaponFilter weapons={weapons.data} />
-        <SortByAttribute />
+        <Suspense>
+          <ScoreFilter attr="Attack" />
+          <ScoreFilter attr="Defense" />
+          <ScoreFilter attr="Speed" />
+          <ScoreFilter attr="Agility" />
+          <ScoreFilter attr="Capacity" />
+          <WeaponFilter weapons={weapons.data} />
+          <SortByAttribute />
+        </Suspense>
       </div>
       <div className="col-span-9">
         <div className=" p-5 grid grid-cols-3 gap-5">
@@ -56,7 +59,10 @@ export default async function Page({
               </div>
               <div className="flex gap-5">
                 {machine.attributes.weapons.data.map((weapon: Weapon) => (
-                  <div className="bg-green-200 rounded-lg p-1 text-sm font-bold">
+                  <div
+                    key={weapon.id}
+                    className="bg-green-200 rounded-lg p-1 text-sm font-bold"
+                  >
                     {weapon.attributes.Name}
                   </div>
                 ))}
@@ -65,7 +71,9 @@ export default async function Page({
           ))}
         </div>
         <div className="p-5">
-          <Pagination pagination={flyingMachines.meta.pagination} />
+          <Suspense>
+            <Pagination pagination={flyingMachines.meta.pagination} />
+          </Suspense>
         </div>
       </div>
     </div>
