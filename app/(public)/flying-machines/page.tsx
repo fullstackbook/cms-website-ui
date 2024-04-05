@@ -5,6 +5,7 @@ import WeaponFilter from "@/components/weapon-filter";
 import { getFlyingMachines, getWeapons } from "@/lib/api";
 import { FlyingMachineSearchParams, Machine, Weapon } from "@/lib/types";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function Page({
   searchParams,
@@ -35,15 +36,18 @@ export default async function Page({
               key={machine.id}
               className="bg-zinc-100 flex flex-col gap-5 items-center py-5"
             >
-              <Image
-                src={
-                  process.env.STRAPI_BASE_URL +
-                  machine.attributes.Image.data.attributes.formats.thumbnail.url
-                }
-                height={156}
-                width={156}
-                alt={machine.attributes.Name}
-              />
+              <Link href={`/flying-machines/${machine.id}`}>
+                <Image
+                  src={
+                    process.env.STRAPI_BASE_URL +
+                    machine.attributes.Image.data.attributes.formats.thumbnail
+                      .url
+                  }
+                  height={156}
+                  width={156}
+                  alt={machine.attributes.Name}
+                />
+              </Link>
               <div>{machine.attributes.Name}</div>
               <div className="grid grid-cols-3 gap-5">
                 <div>⚔️ {machine.attributes.Attack}</div>

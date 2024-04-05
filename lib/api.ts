@@ -91,3 +91,14 @@ export async function createContactMessage(data: {
     throw error;
   }
 }
+
+export async function getFlyingMachineById(id: string) {
+  const res = await fetch(
+    API_URL + "/flying-machines/" + id + "?populate=Image",
+    {
+      headers: HEADERS,
+    }
+  );
+  const json = await res.json();
+  return json;
+}
